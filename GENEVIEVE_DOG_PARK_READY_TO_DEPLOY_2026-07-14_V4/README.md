@@ -1,6 +1,6 @@
 # GENEVIEVE App™ Dog Park — Complete Restore Deployable Build
 
-Version: **2026.07.14.4**
+Version: **2026.07.14.5**
 
 This V4 package restores the full Dog Park structure into one clean static web/PWA repository that can be deployed directly to GitHub Pages or Vercel without npm, Vite, React or a build command.
 
@@ -88,4 +88,4 @@ The exact approved GENEVIEVE App™ logo and approved Tracey/Mr Gruff photo asse
 - The **Park Superintendent** module is always listed and explains how to unlock the local view.
 - **More → Refresh latest app version** removes old GENEVIEVE website caches without deleting locally saved dog records.
 - Core asset URLs are versioned, and Vercel receives no-cache headers for HTML, configuration and the service worker.
-- The footer and More page display build **2026.07.14.4** so the live version can be identified immediately.
+- The footer and More page display build **2026.07.14.5** so the live version can be identified immediately.

@@ -4,7 +4,7 @@
   const CFG = window.GENEVIEVE_CONFIG || {};
   const Logic = window.GenevieveLogic;
   const KEY = 'genevieve_dogpark_full_restore_state_v3';
-  const VERSION = '2026.07.14.4';
+  const VERSION = '2026.07.14.5';
   const $ = selector => document.querySelector(selector);
   const $$ = selector => [...document.querySelectorAll(selector)];
   const now = () => new Date().toISOString();
@@ -362,7 +362,7 @@
     renderAll();
     const hash=location.hash.slice(1);if(hash&&document.getElementById(hash))setScreen(hash,false);else setScreen('today',false);
     $('#modePill').textContent=`${channel().toUpperCase()} · ${window.GenevieveBackend?.enabled?'backend configured':'local-first mode'} · v${VERSION}`;
-    if('serviceWorker' in navigator) navigator.serviceWorker.register('./service-worker.js?v=20260714.4',{updateViaCache:'none'}).then(registration=>registration.update()).catch(()=>{});
+    if('serviceWorker' in navigator) navigator.serviceWorker.register('./service-worker.js?v=20260714.5',{updateViaCache:'none'}).then(registration=>registration.update()).catch(()=>{});
     setInterval(()=>{renderAloneTimer();if(state.aloneTimerEnd&&new Date(state.aloneTimerEnd)<=new Date()){const expiredEnd=state.aloneTimerEnd;state.aloneTimerEnd=null;evidence('alone_timer_expired',{end:expiredEnd});renderAloneTimer();}},30000);
     evidence('app_loaded',{channel:channel(),role:state.currentRole});
   }

@@ -8,17 +8,23 @@
   <title>GENEVIEVE App™ Dog Park</title>
   <link rel="icon" href="./assets/app-icon-192.png">
   <link rel="apple-touch-icon" href="./assets/app-icon-192.png">
-  <link rel="manifest" href="./manifest.webmanifest?v=20260714.4">
-  <link rel="stylesheet" href="./styles.css?v=20260714.4">
-  <script src="./config.js?v=20260714.4"></script>
-  <script src="./logic.js?v=20260714.4"></script>
+  <link rel="manifest" href="./manifest.webmanifest?v=20260714.5">
+  <link rel="stylesheet" href="./styles.css?v=20260714.5">
+  <script src="./config.js?v=20260714.5"></script>
+  <script src="./logic.js?v=20260714.5"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="app-shell">
+<div class="global-emergency-wrap">
+    <button id="globalEmergencyButton" class="global-emergency-button" data-go="emergency" aria-label="Open emergency help">
+      <span class="emergency-pulse" aria-hidden="true"></span>
+      EMERGENCY
+    </button>
+  </div>
   <header class="topbar">
     <div class="brand-row">
-      <img src="./assets/app-icon-192.png" alt="Dog Park utility icon" class="app-icon">
+      <img src="./assets/genevieve-ga-logo-approved-original.png" alt="Approved GENEVIEVE App gold A and black G logo" class="app-icon approved-ga-logo">
       <div>
         <p class="eyebrow">DOG PARK · AUSTRALIA</p>
         <h1>GENEVIEVE App<span class="tm">™</span></h1>
@@ -49,6 +55,14 @@
 
   <main id="main">
     <section id="today" class="screen active" data-group="today">
+      <section class="tree-brand-panel card" aria-label="GENEVIEVE App tree and roots logo">
+        <img src="./assets/genevieve-tree-logo-approved-original.jpeg" alt="Approved GENEVIEVE tree, infinity and roots logo" class="approved-tree-logo">
+        <div>
+          <p class="eyebrow">GENEVIEVE App™</p>
+          <h2>Safety from roots to every journey</h2>
+          <p>Your approved tree and roots emblem is restored as a protected brand asset.</p>
+        </div>
+      </section>
       <section class="hero card">
         <p class="eyebrow">TODAY’S QUESTION</p>
         <h2>Is this a suitable park visit for my dog right now?</h2>
@@ -192,7 +206,7 @@
 
     <section id="travel" class="screen" data-group="more"><section class="hero card"><p class="eyebrow">GREY NOMAD & TRIP PLANNER</p><h2>Plan a lower-stress dog-friendly trip anywhere in Australia</h2></section><section class="grid two"><form id="tripForm" class="card field-panel"><label>From <input name="from" value="Gold Coast QLD"></label><label>To <input name="to" value="Sydney NSW"></label><fieldset><legend>Needs</legend><div id="tripNeeds" class="filter-checks"></div></fieldset><button type="submit">Build route plan</button></form><article class="card"><h2>Suggested route</h2><div id="tripResult"></div></article></section></section>
 
-    <section id="emergency" class="screen" data-group="more"><section class="hero card danger-card"><p class="eyebrow">ONE-TAP HELP</p><h2>Emergency readiness</h2></section><section class="grid three"><article class="card"><h2>Restricted medical summary</h2><label>Dog <select id="emergencyDogSelect"></select></label><button id="showEmergencySummary" class="danger">Show summary</button><div id="emergencySummary"></div></article><article class="card"><h2>Nearest veterinarian</h2><label>Location <input id="vetLocation" value="Gold Coast QLD"></label><a id="vetSearchLink" class="button-link" target="_blank" rel="noopener">Find emergency vet</a></article><article class="card"><h2>I’m here alone</h2><label>Check-in time <select id="aloneTimerMinutes"><option value="15">15 minutes</option><option value="30">30 minutes</option><option value="60">60 minutes</option></select></label><button id="startAloneTimer">Start safety timer</button><button id="cancelAloneTimer" class="secondary">Cancel timer</button><p id="aloneTimerStatus" class="muted"></p></article></section></section>
+    <section id="emergency" class="screen" data-group="more"><section class="hero card official-emergency-card"><p class="eyebrow">OFFICIAL EMERGENCY — BLACK CONTROL</p><h2>Emergency help</h2><div class="emergency-primary-actions"><a class="call-000-button" href="tel:000" aria-label="Call Triple Zero 000 for a life-threatening emergency">Call 000 — life-threatening emergency</a><button class="secondary" data-go="lost-found">Lost dog alert</button><button class="secondary" data-go="incident">Record incident</button></div><p class="emergency-note">Call 000 only for life-threatening emergencies or immediate danger. For an animal medical emergency, contact the nearest emergency veterinarian.</p></section><section class="grid three"><article class="card"><h2>Restricted medical summary</h2><label>Dog <select id="emergencyDogSelect"></select></label><button id="showEmergencySummary" class="danger">Show summary</button><div id="emergencySummary"></div></article><article class="card"><h2>Nearest veterinarian</h2><label>Location <input id="vetLocation" value="Gold Coast QLD"></label><a id="vetSearchLink" class="button-link" target="_blank" rel="noopener">Find emergency vet</a></article><article class="card"><h2>I’m here alone</h2><label>Check-in time <select id="aloneTimerMinutes"><option value="15">15 minutes</option><option value="30">30 minutes</option><option value="60">60 minutes</option></select></label><button id="startAloneTimer">Start safety timer</button><button id="cancelAloneTimer" class="secondary">Cancel timer</button><p id="aloneTimerStatus" class="muted"></p></article></section></section>
 
     <section id="lost-found" class="screen" data-group="more"><section class="hero card"><p class="eyebrow">LOST & FOUND</p><h2>Create a local record and escalation plan</h2></section><section class="grid two"><form id="lostFoundForm" class="card field-panel"><label>Type <select name="type"><option value="lost">Lost dog</option><option value="found">Found dog</option><option value="sighted">Sighted dog</option></select></label><label>Description <input name="description" required></label><label>Location <input name="location" required></label><label>Urgency <select name="urgency"><option value="watch">Watch</option><option value="urgent">Urgent search</option><option value="danger">Immediate danger</option></select></label><label>Contact note <input name="contact"></label><button class="danger" type="submit">Create alert record</button></form><article class="card"><h2>Current records</h2><div id="lostFoundList"></div></article></section></section>
 
@@ -250,8 +264,8 @@
 
   <nav class="bottom-nav" aria-label="Mobile navigation"><button class="active" data-go="today" data-main="today">Today</button><button data-go="before-leaving" data-main="journey">Journey</button><button data-go="park-search" data-main="parks">Parks</button><button data-go="dog-list" data-main="dogs">Dogs</button><button data-go="more" data-main="more">More</button></nav>
 </div>
-<script src="./native-billing-bridge.js?v=20260714.4"></script>
-<script src="./backend.js?v=20260714.4"></script>
-<script src="./app.js?v=20260714.4"></script>
+<script src="./native-billing-bridge.js?v=20260714.5"></script>
+<script src="./backend.js?v=20260714.5"></script>
+<script src="./app.js?v=20260714.5"></script>
 </body>
 </html>

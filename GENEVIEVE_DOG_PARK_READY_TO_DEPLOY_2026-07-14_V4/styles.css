@@ -36,3 +36,116 @@ footer{background:var(--timber);color:#fff;padding:20px;text-align:center}footer
   .role-switch-card select{min-height:50px;font-size:1rem}
   #forceAppUpdate{width:100%}
 }
+
+
+/* v2026.07.14.5 — exact approved logos and permanent emergency control */
+.approved-ga-logo {
+  object-fit: contain;
+  object-position: center;
+  padding: 0;
+  background: #fff;
+}
+.tree-brand-panel {
+  display: grid;
+  grid-template-columns: minmax(150px, 260px) 1fr;
+  gap: 24px;
+  align-items: center;
+  border-left: 8px solid var(--gold);
+  overflow: hidden;
+}
+.approved-tree-logo {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: #fff;
+  border-radius: 14px;
+}
+.global-emergency-wrap {
+  position: fixed;
+  right: max(14px, env(safe-area-inset-right));
+  top: max(14px, env(safe-area-inset-top));
+  z-index: 1000;
+}
+.global-emergency-button {
+  background: #000;
+  color: #fff;
+  border: 3px solid #fff;
+  box-shadow: 0 6px 22px rgba(0,0,0,.45);
+  border-radius: 999px;
+  min-height: 52px;
+  padding: 12px 18px;
+  letter-spacing: .06em;
+  font-weight: 950;
+  display: inline-flex;
+  gap: 9px;
+  align-items: center;
+}
+.global-emergency-button:hover,
+.global-emergency-button:focus-visible {
+  background: #000;
+  filter: none;
+  outline: 4px solid var(--red);
+  outline-offset: 3px;
+}
+.emergency-pulse {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 0 5px rgba(241,11,11,.2);
+}
+.official-emergency-card {
+  background: #000;
+  color: #fff;
+  border-left: 8px solid #000;
+  outline: 4px solid var(--red);
+}
+.official-emergency-card .eyebrow {
+  color: #fff;
+}
+.emergency-primary-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 14px 0;
+}
+.call-000-button {
+  background: var(--red);
+  color: #fff;
+  border-radius: 12px;
+  padding: 13px 17px;
+  text-decoration: none;
+  font-weight: 950;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+}
+.emergency-note {
+  margin: 0;
+  color: #fff;
+}
+@media(max-width:760px) {
+  .global-emergency-wrap {
+    top: auto;
+    bottom: calc(70px + env(safe-area-inset-bottom));
+    right: 10px;
+  }
+  .global-emergency-button {
+    min-height: 48px;
+    padding: 10px 14px;
+    font-size: .82rem;
+  }
+  .tree-brand-panel {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .approved-tree-logo {
+    max-height: 250px;
+  }
+  .emergency-primary-actions > * {
+    width: 100%;
+  }
+}

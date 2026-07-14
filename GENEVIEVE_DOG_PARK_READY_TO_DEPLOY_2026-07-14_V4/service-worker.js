@@ -1,9 +1,11 @@
 const CACHE='genevieve-dogpark-full-restore-2026-07-14-v4';
-const VERSION='2026.07.14.4';
+const VERSION='2026.07.14.5';
 const ASSETS=[
-  './','./index.html','./styles.css?v=20260714.4','./config.js?v=20260714.4','./logic.js?v=20260714.4',
-  './app.js?v=20260714.4','./backend.js?v=20260714.4','./native-billing-bridge.js?v=20260714.4',
-  './manifest.webmanifest?v=20260714.4','./assets/app-icon-192.png','./assets/app-icon-512.png','./404.html',
+  './','./index.html','./styles.css?v=20260714.5','./config.js?v=20260714.5','./logic.js?v=20260714.5',
+  './app.js?v=20260714.5','./backend.js?v=20260714.5','./native-billing-bridge.js?v=20260714.5',
+  './manifest.webmanifest?v=20260714.5','./assets/app-icon-192.png','./assets/app-icon-512.png',
+  './assets/genevieve-ga-logo-approved-original.png',
+  './assets/genevieve-tree-logo-approved-original.jpeg','./404.html',
   './legal/','./legal/privacy-policy.html','./legal/terms-of-use.html','./legal/safety-disclaimer.html',
   './legal/refund-cancellation-policy.html','./legal/account-deletion.html','./legal/community-guidelines.html',
   './legal/subscription-terms.html','./legal/support.html','./legal/ip-notice.html'
