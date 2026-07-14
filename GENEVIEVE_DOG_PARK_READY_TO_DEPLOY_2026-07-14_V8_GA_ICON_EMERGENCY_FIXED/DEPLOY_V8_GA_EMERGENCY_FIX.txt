@@ -1,0 +1,12 @@
+GENEVIEVE App™ DOG PARK — V8 DEPLOYMENT
+Build 2026.07.14.8
+
+1. Open this extracted folder.
+2. Upload/replace ALL files and folders in the existing GitHub repository root.
+3. Commit the changes.
+4. Wait for Vercel to show the new Production deployment as Ready.
+5. Open: https://genevieve-dog-park-app.vercel.app
+6. In the app, open More > Refresh latest app version if an older screen remains.
+7. On the phone, remove the old paw-print shortcut and add the site to the home screen again. Existing installed shortcuts may not replace their icon automatically.
+
+Expected visible version: 2026.07.14.8
