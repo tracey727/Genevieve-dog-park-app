@@ -1,6 +1,6 @@
 # V6 Changes — Voluntary Check-In Pilot
 
-Build: 2026.07.14.6
+Build: 2026.07.14.7
 
 - Check-in and check-out explicitly optional.
 - Added Continue without checking in.

@@ -1,6 +1,6 @@
-GENEVIEVE App™ DOG PARK — V6 VOLUNTARY CHECK-IN PILOT
+GENEVIEVE App™ DOG PARK — V7 BACK STEP + MOBILE GA
 
-BUILD: 2026.07.14.6
+BUILD: 2026.07.14.7
 
 THIS BUILD CONTAINS
 - Your exact uploaded GA logo file: assets/genevieve-ga-logo-approved-original.png
@@ -22,7 +22,7 @@ EASIEST DEPLOYMENT METHOD
 5. Save.
 6. Deployments → Redeploy → turn off existing build cache.
 7. When Ready, open Visit.
-8. Confirm the footer/build marker says 2026.07.14.6.
+8. Confirm the footer/build marker says 2026.07.14.7.
 9. Confirm the exact GA logo is at the top, the tree is on Today,
    and the black EMERGENCY button is always visible.
 

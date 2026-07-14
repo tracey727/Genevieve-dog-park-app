@@ -16,3 +16,12 @@
 - Updated Vercel Content Security Policy for Open-Meteo weather requests.
 - Added support and intellectual-property pages.
 - Added Node logic tests and expanded backend schema.
+
+## 2026.07.14.10 — V9 Preservation + Exact Pink-Glow GA
+
+- Built directly from the complete V9 package.
+- Preserved all 31 screens, 23 forms, navigation, emergency tools, role views, legal pages, data structures and existing imagery.
+- Kept the uploaded GA artwork pixel-identical; only new V10 filenames were introduced to defeat stale phone/browser icon caches.
+- Added V10 favicon, Apple touch icon, 192, 512 and 1024 pixel app icons.
+- Advanced the service-worker cache and one-time cache reset to V10.
+- No V9 file was removed.

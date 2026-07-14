@@ -1,5 +1,5 @@
-GENEVIEVE App™ DOG PARK — V6 VOLUNTARY CHECK-IN PILOT
-BUILD 2026.07.14.6
+GENEVIEVE App™ DOG PARK — V7 BACK STEP + MOBILE GA
+BUILD 2026.07.14.7
 
 This build keeps the exact uploaded GA and tree logos and the permanent black EMERGENCY control.
 
@@ -19,7 +19,7 @@ CURRENT GITHUB METHOD
 5. Deployments → Redeploy.
 6. Turn OFF existing build cache if offered.
 7. Open the new Ready deployment.
-8. Confirm build 2026.07.14.6.
+8. Confirm build 2026.07.14.7.
 9. Open Journey → Voluntary Check In / Out.
 10. Confirm both buttons appear:
     - Voluntarily check in

@@ -1,10 +1,11 @@
-const CACHE='genevieve-dogpark-full-restore-2026-07-14-v4';
-const VERSION='2026.07.14.6';
+const CACHE='genevieve-dogpark-pink-glow-ga-2026-07-14-v11';
+const VERSION='2026.07.14.11';
 const ASSETS=[
-  './','./index.html','./styles.css?v=20260714.6','./config.js?v=20260714.6','./logic.js?v=20260714.6',
-  './app.js?v=20260714.6','./backend.js?v=20260714.6','./native-billing-bridge.js?v=20260714.6',
-  './manifest.webmanifest?v=20260714.6','./assets/app-icon-192.png','./assets/app-icon-512.png',
-  './assets/genevieve-ga-logo-approved-original.png',
+  './','./index.html','./styles.css?v=20260714.11','./config.js?v=20260714.11','./logic.js?v=20260714.11',
+  './app.js?v=20260714.11','./backend.js?v=20260714.11','./native-billing-bridge.js?v=20260714.11',
+  './manifest.webmanifest?v=20260714.11','./assets/ga-favicon-64-v10.png','./assets/ga-apple-touch-icon-180-v10.png',
+  './assets/ga-app-icon-192-v10.png','./assets/ga-app-icon-512-v10.png',
+  './assets/genevieve-ga-logo-approved-original.png','./assets/ga-logo-full-square-v10.png',
   './assets/genevieve-tree-logo-approved-original.jpeg','./404.html',
   './legal/','./legal/privacy-policy.html','./legal/terms-of-use.html','./legal/safety-disclaimer.html',
   './legal/refund-cancellation-policy.html','./legal/account-deletion.html','./legal/community-guidelines.html',

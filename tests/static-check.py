@@ -17,7 +17,10 @@ for file in root.rglob('*.html'):
             if not value or value.startswith(('#','http:','https:','mailto:','tel:','data:','javascript:')): continue
             if value == '/': continue
             local=value.split('#',1)[0].split('?',1)[0]
-            path=(file.parent/local).resolve()
+            if local.startswith('/'):
+                path=(root/local.lstrip('/')).resolve()
+            else:
+                path=(file.parent/local).resolve()
             if value.endswith('/'): path=path/'index.html'
             if not path.exists(): errors.append(f'{file.relative_to(root)} broken {attr}: {value}')
 # Screen navigation targets

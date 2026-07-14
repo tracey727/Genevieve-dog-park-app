@@ -1,6 +1,6 @@
 /* Public deployment configuration. Never put secret keys, Apple secrets, Google service-account keys or Stripe secret keys in this file. */
 window.GENEVIEVE_CONFIG = Object.freeze({
-  version: "2026.07.14.6",
+  version: "2026.07.14.9",
   appName: "GENEVIEVE App™ Dog Park",
   businessName: "GENEVIEVE App™",
   legalOperator: "Tracey Ann Kennedy trading as GENEVIEVE App™",

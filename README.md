@@ -1,8 +1,8 @@
 # GENEVIEVE App™ Dog Park — Complete Restore Deployable Build
 
-Version: **2026.07.14.6**
+Version: **2026.07.14.10**
 
-This V4 package restores the full Dog Park structure into one clean static web/PWA repository that can be deployed directly to GitHub Pages or Vercel without npm, Vite, React or a build command.
+This V10 package is built directly from the complete V9 package and preserves the full Dog Park structure into one clean static web/PWA repository that can be deployed directly to GitHub Pages or Vercel without npm, Vite, React or a build command.
 
 ## Main navigation
 
@@ -77,20 +77,25 @@ A real multi-user public service still needs:
 
 The Launch Check displays these as blockers rather than pretending they are complete.
 
-## Official logo and photos
+## Official GA logo and phone icon
 
-The exact approved GENEVIEVE App™ logo and approved Tracey/Mr Gruff photo assets were not mounted in the build workspace. The package therefore keeps a neutral paw utility icon and does not redraw or alter the locked logo. Replace the utility assets only with the exact approved master files.
+The exact supplied GA artwork remains unchanged in `assets/genevieve-ga-logo-approved-original.png`. V10 uses the pixel-identical square crop with its pink glow for display and uses that same approved artwork for the in-app header, browser favicon, Apple home-screen icon and Android/PWA install icon. It is not redrawn, recoloured, rotated, stretched or squashed.
 
 
-## V4 visibility and deployment fixes
+## Visibility and deployment fixes
 
 - Mobile users can change the local demonstration role under **More → App View**.
 - The **Park Superintendent** module is always listed and explains how to unlock the local view.
 - **More → Refresh latest app version** removes old GENEVIEVE website caches without deleting locally saved dog records.
 - Core asset URLs are versioned, and Vercel receives no-cache headers for HTML, configuration and the service worker.
-- The footer and More page display build **2026.07.14.6** so the live version can be identified immediately.
+- The footer and More page display build **2026.07.14.10** so the live version can be identified immediately.
 
 
 ## Voluntary check-in policy
 
-Check-in and check-out are optional community features in build 2026.07.14.6. The app must not present the displayed count as an official headcount or require participation unless a competent authority formally adopts and verifies such a requirement.
+Check-in and check-out are optional community features in build 2026.07.14.10. The app must not present the displayed count as an official headcount or require participation unless a competent authority formally adopts and verifies such a requirement.
+
+
+## V7 navigation and branding
+
+Build 2026.07.14.7 adds true one-step history navigation and keeps the approved GA visible on phones, including screens narrower than 420px. Phone install icons now use the approved GA mark.

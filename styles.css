@@ -38,7 +38,7 @@ footer{background:var(--timber);color:#fff;padding:20px;text-align:center}footer
 }
 
 
-/* v2026.07.14.6 — exact approved logos and permanent emergency control */
+/* v2026.07.14.7 — exact approved logos and permanent emergency control */
 .approved-ga-logo {
   object-fit: contain;
   object-position: center;
@@ -151,7 +151,7 @@ footer{background:var(--timber);color:#fff;padding:20px;text-align:center}footer
 }
 
 
-/* v2026.07.14.6 — voluntary community check-in pilot */
+/* v2026.07.14.7 — voluntary community check-in pilot */
 .voluntary-pilot-hero {
   border-left-color: var(--green);
 }
@@ -175,3 +175,158 @@ footer{background:var(--timber);color:#fff;padding:20px;text-align:center}footer
   color: var(--deep);
   padding: 0 6px;
 }
+
+
+/* v2026.07.14.7 — Back one step and mobile-safe approved GA logo */
+.page-step-bar {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 9px 14px;
+  background: #ffffff;
+  border-bottom: 2px solid rgba(4,45,27,.18);
+  position: sticky;
+  top: 0;
+  z-index: 45;
+  box-shadow: 0 4px 12px rgba(4,45,27,.10);
+}
+.back-step-button {
+  background: var(--deep);
+  color: #fff;
+  min-width: 142px;
+}
+.back-step-button[disabled] {
+  background: #d9e3dc;
+  color: #5d6e64;
+  border: 1px solid #9bad9f;
+  opacity: 1;
+}
+.page-step-location {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.page-step-location span {
+  color: var(--muted);
+  font-size: .72rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.page-step-location strong {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.main-tabs {
+  top: 62px;
+}
+.approved-ga-logo {
+  display: block !important;
+  width: 76px;
+  height: 76px;
+  min-width: 76px;
+  flex: 0 0 76px;
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+  padding: 3px;
+  border-radius: 17px;
+}
+.brand-row > div {
+  min-width: 0;
+}
+@media(max-width:760px) {
+  .page-step-bar {
+    padding: 8px 10px;
+    gap: 9px;
+  }
+  .back-step-button {
+    min-width: 124px;
+    padding: 9px 11px;
+    min-height: 44px;
+    font-size: .85rem;
+  }
+  .approved-ga-logo {
+    display: block !important;
+    width: 62px;
+    height: 62px;
+    min-width: 62px;
+    flex-basis: 62px;
+  }
+  .brand-row {
+    gap: 10px;
+    width: 100%;
+  }
+  .topbar {
+    padding: 14px 12px;
+  }
+}
+@media(max-width:420px) {
+  .app-icon,
+  .approved-ga-logo {
+    display: block !important;
+    width: 58px;
+    height: 58px;
+    min-width: 58px;
+    flex-basis: 58px;
+  }
+  .topbar h1 {
+    font-size: 1.35rem;
+  }
+  .topbar p {
+    font-size: .78rem;
+  }
+  .page-step-location span {
+    font-size: .64rem;
+  }
+  .page-step-location strong {
+    font-size: .88rem;
+  }
+}
+
+/* v2026.07.14.9 — full approved GA display, GA phone icon and non-overlapping emergency control */
+.global-emergency-wrap {
+  position: static;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px 12px;
+  background: #000;
+  border-bottom: 3px solid var(--red);
+  z-index: 60;
+}
+.global-emergency-button {
+  margin: 0;
+  justify-content: center;
+}
+.approved-ga-logo {
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
+  overflow: hidden;
+}
+@media(max-width:760px) {
+  main {
+    padding-bottom: calc(92px + env(safe-area-inset-bottom));
+  }
+  .bottom-nav {
+    padding-bottom: calc(7px + env(safe-area-inset-bottom));
+  }
+  .global-emergency-wrap {
+    position: static;
+    inset: auto;
+    width: 100%;
+    padding: 7px 10px;
+    background: #000;
+  }
+  .global-emergency-button {
+    width: 100%;
+    min-height: 48px;
+    padding: 10px 14px;
+    font-size: .86rem;
+  }
+}
+
+.travel-link-stack{display:grid;gap:.65rem;margin:.8rem 0}.travel-link-stack .button-link,.travel-link-stack .call-000-button{display:block;text-align:center}.travel-support-grid input{width:100%}

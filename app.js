@@ -4,7 +4,7 @@
   const CFG = window.GENEVIEVE_CONFIG || {};
   const Logic = window.GenevieveLogic;
   const KEY = 'genevieve_dogpark_full_restore_state_v3';
-  const VERSION = '2026.07.14.6';
+  const VERSION = '2026.07.14.11';
   const $ = selector => document.querySelector(selector);
   const $$ = selector => [...document.querySelectorAll(selector)];
   const now = () => new Date().toISOString();
@@ -14,7 +14,7 @@
   const fmtTime = value => value ? new Intl.DateTimeFormat('en-AU',{dateStyle:'medium',timeStyle:'short'}).format(new Date(value)) : '';
 
   const parkNeeds = ['Accessibility','Beach','Café nearby','Caravan parking','Double gate','Fenced','Lighting','Quiet','Shade','Toilets','Water bowl'];
-  const tripNeedOptions = ['Caravan park','Dog café','Dog beach','Emergency vet','Fuel','Hotel','Quiet park','Shade','Toilets','Water'];
+  const tripNeedOptions = ['Airbnb / holiday home','Caravan park','Dog café','Dog beach','Emergency vet','Fuel','Hotel','Pet-friendly accommodation','Quiet park','Shade','Toilets','Water'];
   const etiquetteSignals = [
     ['relaxed','Relaxed body'],['playBow','Play bow'],['sniffBreaks','Takes sniff breaks'],['respondsRecall','Responds to recall'],
     ['stiff','Stiff body'],['tucked','Tail tucked / shrinking'],['avoidance','Avoids contact'],['overAroused','Cannot settle'],
@@ -87,6 +87,26 @@
   }
   function recordCard(title, body, level='green', controls='') { return `<article class="record-card ${level}"><b>${safe(title)}</b><p>${safe(body)}</p>${controls}</article>`; }
 
+  let appHistoryDepth = Number(history.state?.genevieveDepth || 0);
+  const screenTitle = id => {
+    const screen = document.getElementById(id);
+    return screen?.querySelector('h2')?.textContent?.trim()
+      || screen?.querySelector('h1')?.textContent?.trim()
+      || id.replaceAll('-', ' ');
+  };
+  function updateStepNavigation(id) {
+    const back = $('#backStepButton');
+    if (back) {
+      back.disabled = appHistoryDepth <= 0;
+      back.setAttribute('aria-disabled', String(appHistoryDepth <= 0));
+    }
+    const title = $('#currentPageTitle');
+    if (title) title.textContent = screenTitle(id);
+  }
+  function backOneStep() {
+    if (appHistoryDepth > 0) history.back();
+  }
+
   const groupForScreen = id => document.getElementById(id)?.dataset.group || 'more';
   function applyRoleVisibility(){
     const role=state.currentRole;
@@ -101,17 +121,28 @@
     const help=$('#roleHelp');
     if(help) help.innerHTML=`<b>${safe(names[role]||role)} view is active.</b> ${role==='superintendent'?'The facilities, maintenance, notices and trend tools are now available.':'Use the selector above when you need a different local demonstration view.'}`;
   }
-  function setScreen(id, pushHash=true) {
-    const target=document.getElementById(id); if(!target) return;
-    if(target.dataset.role && !target.dataset.role.split(',').includes(state.currentRole)) { alert('Choose Park Superintendent from More → App View to open these tools.'); id='more'; }
+  function setScreen(id, pushHistory=true) {
+    let target=document.getElementById(id); if(!target) return;
+    if(target.dataset.role && !target.dataset.role.split(',').includes(state.currentRole)) {
+      alert('Choose Park Superintendent from More → App View to open these tools.');
+      id='more';
+      target=document.getElementById(id);
+    }
+    const currentId=document.querySelector('.screen.active')?.id || null;
     $$('.screen').forEach(s=>s.classList.toggle('active',s.id===id));
     const group=groupForScreen(id);
     $$('[data-main]').forEach(b=>b.classList.toggle('active',b.dataset.main===group));
-    if(pushHash) history.replaceState(null,'',`#${id}`);
+    if(pushHistory && currentId && currentId!==id) {
+      appHistoryDepth += 1;
+      history.pushState({genevieveScreen:id,genevieveDepth:appHistoryDepth},'',`#${id}`);
+    } else {
+      history.replaceState({genevieveScreen:id,genevieveDepth:appHistoryDepth},'',`#${id}`);
+    }
     if(id==='park-details') renderParkDetails();
     if(id==='live-park') renderLivePark();
     if(id==='dog-profile') renderDogProfile(state.selectedDogId || state.dogs[0]?.id);
     if(id==='superintendent') renderSuperintendent();
+    updateStepNavigation(id);
     window.scrollTo({top:0,behavior:document.body.classList.contains('reduced-motion')?'auto':'smooth'});
   }
 
@@ -260,7 +291,7 @@
       {name:'All four subscription products exist in configuration',ok:(CFG.products||[]).length===4,block:true},
       {name:'Web Stripe links mapped',ok:currentChannel!=='web'||(CFG.products||[]).every(p=>p.stripePaymentLink),block:currentChannel==='web',detail:currentChannel==='web'?'Each product needs its verified matching Payment Link.':'Not required in native store channel.'},
       {name:'Supabase public backend configured',ok:Boolean(window.GenevieveBackend?.enabled),warn:true,detail:window.GenevieveBackend?.enabled?'Public URL and anon key present.':'Local-first mode only; no real multi-user accounts or live park data.'},
-      {name:'Official logo and approved photos installed',ok:false,warn:true,detail:'The exact locked assets were not available in this workspace; a neutral paw utility icon remains.'},
+      {name:'Approved GA and tree logo assets installed',ok:true,detail:'The original approved files are preserved. Mobile display and install icons use the same GA pixels without distortion.'},
       {name:'Current app channel',ok:true,detail:currentChannel},
       {name:'Risk engine logic tests included',ok:true,detail:'Run npm-free Node test from tests/test-logic.js or review docs/TEST_REPORT.md.'}
     ];
@@ -294,6 +325,12 @@
   }
 
   function bindForms(){
+    $('#backStepButton')?.addEventListener('click', backOneStep);
+    window.addEventListener('popstate', event => {
+      appHistoryDepth = Number(event.state?.genevieveDepth || 0);
+      const id = event.state?.genevieveScreen || location.hash.slice(1) || 'today';
+      if(document.getElementById(id)) setScreen(id, false);
+    });
     const changeRole=e=>{state.currentRole=e.target.value;evidence('role_view_changed',{role:state.currentRole});applyRoleVisibility();renderAll();setScreen('more');};
     $('#roleSelect').addEventListener('change',changeRole);
     $('#mobileRoleSelect').addEventListener('change',changeRole);
@@ -344,6 +381,18 @@
 
     $('#tripNeeds').innerHTML=tripNeedOptions.map(n=>`<label class="toggle"><input type="checkbox" value="${safe(n)}"> ${safe(n)}</label>`).join('');
     $('#tripForm').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.currentTarget),plan={id:uid('trip'),from:f.get('from'),to:f.get('to'),needs:$$('#tripNeeds input:checked').map(i=>i.value),time:now()};state.trips.unshift(plan);evidence('trip_plan',plan);renderTripResult(plan);});
+    const updateTravelLinks=()=>{
+      const vetLocation=$('#travelVetLocation')?.value||'Australia';
+      const stayLocation=$('#stayLocation')?.value||'Australia';
+      if($('#travelVetMapsLink')) $('#travelVetMapsLink').href=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`24 hour emergency vet ${vetLocation}`)}`;
+      if($('#travelVetOpenNowLink')) $('#travelVetOpenNowLink').href=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`veterinarian open now ${vetLocation}`)}`;
+      if($('#airbnbPetLink')) $('#airbnbPetLink').href=`https://www.airbnb.com.au/s/${encodeURIComponent(stayLocation)}/homes?tab_id=home_tab&refinement_paths%5B%5D=%2Fhomes&query=${encodeURIComponent(stayLocation)}&flexible_trip_lengths%5B%5D=one_week&monthly_start_date=&monthly_length=3&monthly_end_date=&price_filter_input_type=0&channel=EXPLORE&amenities%5B%5D=12`;
+      if($('#petHotelMapsLink')) $('#petHotelMapsLink').href=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`pet friendly hotels ${stayLocation}`)}`;
+      if($('#petCaravanMapsLink')) $('#petCaravanMapsLink').href=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`pet friendly caravan parks ${stayLocation}`)}`;
+    };
+    $('#travelVetLocation')?.addEventListener('input',updateTravelLinks);
+    $('#stayLocation')?.addEventListener('input',updateTravelLinks);
+    updateTravelLinks();
 
     $('#emergencyDogSelect').addEventListener('change',()=>$('#emergencySummary').innerHTML='');
     $('#showEmergencySummary').addEventListener('click',()=>{const dog=dogById($('#emergencyDogSelect').value);if(!dog)return;$('#emergencySummary').innerHTML=`<div class="answer amber"><b>${safe(dog.name)}</b><br>Microchip: ${safe(dog.microchip||'Not entered')}<br>Weight: ${safe(dog.weight||'Not entered')} kg<br>Allergies/medication: ${safe(dog.medical||'Not entered')}<br>Vet: ${safe(dog.vet||'Not entered')}<br>Emergency contact: ${safe(dog.emergencyContact||'Not entered')}</div>`;evidence('emergency_summary_viewed',{dogId:dog.id,role:state.currentRole});});
@@ -376,7 +425,32 @@
     renderAll();
     const hash=location.hash.slice(1);if(hash&&document.getElementById(hash))setScreen(hash,false);else setScreen('today',false);
     $('#modePill').textContent=`${channel().toUpperCase()} · ${window.GenevieveBackend?.enabled?'backend configured':'local-first mode'} · v${VERSION}`;
-    if('serviceWorker' in navigator) navigator.serviceWorker.register('./service-worker.js?v=20260714.6',{updateViaCache:'none'}).then(registration=>registration.update()).catch(()=>{});
+    if('serviceWorker' in navigator) (async()=>{
+      try{
+        const resetKey='genevieve_v11_cache_reset_done';
+        if(!localStorage.getItem(resetKey)){
+          if('serviceWorker' in navigator){
+            const registrations=await navigator.serviceWorker.getRegistrations();
+            await Promise.all(registrations.map(reg=>reg.unregister()));
+          }
+          if('caches' in window){
+            const keys=await caches.keys();
+            await Promise.all(keys.filter(key=>key.includes('genevieve')).map(key=>caches.delete(key)));
+          }
+          localStorage.setItem(resetKey,'yes');
+          const freshUrl=new URL(location.href);
+          freshUrl.searchParams.set('genevieveVersion','10');
+          location.replace(freshUrl.toString());
+          return;
+        }
+        if('serviceWorker' in navigator){
+          const registration=await navigator.serviceWorker.register('./service-worker.js?v=20260714.10',{updateViaCache:'none'});
+          await registration.update();
+        }
+      }catch(error){
+        console.warn('GENEVIEVE V11 cache reset could not complete automatically.',error);
+      }
+    })();
     setInterval(()=>{renderAloneTimer();if(state.aloneTimerEnd&&new Date(state.aloneTimerEnd)<=new Date()){const expiredEnd=state.aloneTimerEnd;state.aloneTimerEnd=null;evidence('alone_timer_expired',{end:expiredEnd});renderAloneTimer();}},30000);
     evidence('app_loaded',{channel:channel(),role:state.currentRole});
   }
